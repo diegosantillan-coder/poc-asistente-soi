@@ -1,0 +1,10 @@
+@import 'main';
+.a-logo {
+	&-primary {
+		background-color: $background-default;
+	}
+
+	&-secondary {
+		background-color: $background-white;
+	}
+}
