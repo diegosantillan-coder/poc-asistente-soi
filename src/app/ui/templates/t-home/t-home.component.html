@@ -8,9 +8,27 @@
 			</p>
 			<a-button [text]="'Ingresa aquí'"></a-button>
 		</div>
-		<div class="t-home__image">
-			<div class="t-home__circle"></div>
-			<img src="images/soi-girl-desktop.svg" alt="SOI" />
+		<div class="t-home__image-container">
+			<div class="t-home__image">
+				<div class="t-home__circle"></div>
+				<img src="images/soi-girl-desktop.svg" alt="SOI" />
+			</div>
+			<div class="t-home__container-card-ia">
+				<m-card-ia
+					[src]="'images/amelia.svg'"
+					[title]="'Amelia'"
+					[description]="'Tu asistente virtual IA'"
+					[cssStyle]="'m-card-ia__default'"
+					[circleStyle]="'m-card-ia__circle--blue-light'"
+				></m-card-ia>
+				<m-card-ia
+					[src]="'images/paco.svg'"
+					[title]="'Paco'"
+					[cssStyle]="'m-card-ia__green'"
+					[circleStyle]="'m-card-ia__circle--green-light'"
+					[description]="'Tu asistente virtual'"
+				></m-card-ia>
+			</div>
 		</div>
 	</div>
 </div>

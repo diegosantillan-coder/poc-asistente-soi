@@ -1,7 +1,7 @@
 @import 'main';
 .t-home {
 	width: 100%;
-	height: 70vh;
+	height: 100%;
 	background-image: url('/images/banner-desktop.svg');
 	background-size: cover;
 	background-position: center;
@@ -14,6 +14,18 @@
 		grid-template-columns: 1fr;
 		align-items: center;
 		justify-items: center;
+	}
+
+	&__image-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&__container-card-ia {
+		display: grid;
+		align-content: center;
+		grid-template-columns: 1fr;
+		gap: 2rem;
 	}
 
 	&__info {
@@ -32,6 +44,7 @@
 		width: 300px;
 		height: auto;
 	}
+
 	&__circle {
 		position: absolute;
 		top: 55%;
@@ -45,6 +58,7 @@
 	}
 
 	@include from($laptop) {
+		height: 70vh;
 		&__container {
 			grid-template-columns: 1fr 1fr;
 		}
