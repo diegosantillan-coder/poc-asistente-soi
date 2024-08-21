@@ -1,0 +1,21 @@
+@import 'main';
+.o-header-soi {
+	display: flex;
+	padding: 1rem;
+	justify-content: space-between;
+	align-items: center;
+
+	@include from($laptop) {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+
+		&__logo {
+			width: 200px;
+		}
+
+		&__menu {
+			display: none;
+		}
+	}
+}

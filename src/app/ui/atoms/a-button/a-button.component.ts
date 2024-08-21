@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
 	styleUrl: './a-button.component.scss'
 })
 export class AButtonComponent {
-	@Input() type = 'a-button-primary';
+	@Input() styleClass = 'a-button-primary';
 	@Input() text = '';
 }
