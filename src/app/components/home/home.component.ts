@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { OrganismsModule } from '@ui/organisms/organisms.module';
+import { FooterComponent } from '@components/footer/footer.component';
+import { HeaderComponent } from '@components/header/header.component';
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [OrganismsModule],
+	imports: [HeaderComponent, FooterComponent],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss'
 })

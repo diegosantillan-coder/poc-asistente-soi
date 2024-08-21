@@ -7,6 +7,14 @@
 	box-sizing: border-box;
 }
 
+hr {
+	margin: 0; /* Elimina márgenes */
+	padding: 0; /* Elimina padding */
+	border: 0; /* Elimina bordes */
+	height: 1px; /* Define la altura */
+	background-color: #ffffff; /* Color de fondo neutral */
+}
+
 /* Hereda los estilos de borde y tipografía */
 html,
 body,

@@ -14,5 +14,6 @@ export class MNavbarComponent {
 	@Input() navBar!: NavBar[];
 	@Input() titleNavBar = '';
 	@Input() styleClass = 'm-navbar-primary';
+	@Input() styleSeparator = '';
 	@Input() separator = false;
 }

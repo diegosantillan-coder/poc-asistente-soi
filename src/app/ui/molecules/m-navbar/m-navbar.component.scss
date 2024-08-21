@@ -2,8 +2,14 @@
 .m-navbar {
 	display: grid;
 
+	&__center {
+		grid-template-columns: repeat(3, 1fr);
+		justify-items: center;
+	}
+
 	&__title {
 		font-weight: 600;
+		color: $text-white;
 	}
 
 	&__separator {
@@ -24,6 +30,8 @@
 	}
 
 	&-secondary {
+		margin-top: 0.5rem;
+		gap: 1rem;
 		li {
 			a {
 				color: $text-white;
@@ -33,10 +41,6 @@
 
 	&-responsive {
 		display: none;
-	}
-
-	&-responsive-default {
-		display: flex;
 	}
 
 	@include from($laptop) {

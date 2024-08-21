@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'a-separator',
 	standalone: true,
-	imports: [],
+	imports: [NgClass],
 	templateUrl: './a-separator.component.html',
 	styleUrl: './a-separator.component.scss'
 })
-export class ASeparatorComponent {}
+export class ASeparatorComponent {
+	@Input() styleClass = '';
+}
