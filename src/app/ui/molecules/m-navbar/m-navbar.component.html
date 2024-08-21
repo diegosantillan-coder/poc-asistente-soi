@@ -1,0 +1,8 @@
+<div class="m-navbar__title">{{ titleNavBar | uppercase }}</div>
+<ul [ngClass]="type" class="m-navbar">
+	@for (item of navBar; track item.id) {
+		<li>
+			<a href="{{ item.path }}">{{ item.title }}</a>
+		</li>
+	}
+</ul>

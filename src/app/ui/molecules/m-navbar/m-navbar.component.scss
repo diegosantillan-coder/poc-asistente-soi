@@ -1,0 +1,36 @@
+@import 'main';
+.m-navbar {
+	display: grid;
+	&__title {
+		font-weight: 600;
+	}
+
+	li {
+		margin-top: 0.9em;
+		font-weight: 400;
+	}
+
+	&-primary {
+		li {
+			a {
+				color: $text-dark;
+			}
+		}
+	}
+
+	&-secondary {
+		li {
+			a {
+				color: $text-white;
+			}
+		}
+	}
+
+	@include from($tablet) {
+		&-responsive {
+			gap: 1rem;
+			grid-auto-rows: 2rem;
+			grid-template-columns: repeat(auto-fill, minmax(2rem, 5rem));
+		}
+	}
+}

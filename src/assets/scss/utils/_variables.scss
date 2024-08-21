@@ -2,5 +2,14 @@
 $background-default: #054b85;
 $background-info: #e6eefe;
 $background-white: #ffffff;
+$text-dark: #0d1a26;
 $text-white: #ffffff;
 $text-default: #054b85;
+
+/* Breakpoints */
+$mobile-small: 320px;
+$mobile-medium: 375px;
+$mobile-large: 425px; /*-------- Mobile devices*/
+$tablet: 768px; /*-------- Tablet devices*/
+$laptop: 1024px; /*-------- Desktop devices*/
+$laptop-large: 1440px;

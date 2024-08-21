@@ -28,7 +28,7 @@ npm install
 - `style`: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - `test`: Adding missing tests or correcting existing tests
 
-# Reminders
+# Documentacion ConventionalCommits
 
 - Put newline before extended commit body
 - More details at **[conventionalcommits.org](https://www.conventionalcommits.org/)**
