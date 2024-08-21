@@ -8,6 +8,8 @@
 	background-repeat: no-repeat;
 	color: $text-white;
 	z-index: -2;
+	padding-bottom: 1rem;
+	padding-top: 1rem;
 
 	&__container {
 		display: grid;
@@ -18,30 +20,30 @@
 
 	&__image-container {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 50% 45%;
+		align-items: center;
 	}
 
 	&__container-card-ia {
 		display: grid;
 		align-content: center;
-		grid-template-columns: 1fr;
 		gap: 2rem;
+		padding-left: 1rem;
 	}
 
 	&__info {
 		display: grid;
-		gap: 3rem;
-		font-size: 23px;
+		gap: 1rem;
+		font-size: 16px;
 		line-height: 1.5rem;
-		width: 400px;
-		//justify-self: self-end;
+		padding: 1.5rem;
 	}
 
 	&__image {
 		position: relative;
 		display: inline-block;
 		z-index: 0;
-		width: 300px;
+		width: 200px;
 		height: auto;
 	}
 
@@ -49,27 +51,77 @@
 		position: absolute;
 		top: 55%;
 		left: 30%;
-		width: 303px;
-		height: 303px;
+		width: 203px;
+		height: 203px;
 		background-color: $background-default;
 		border-radius: 50%;
 		transform: translate(-50%, -50%);
 		z-index: -1;
 	}
+}
 
-	@include from($laptop) {
-		height: 70vh;
-		&__container {
+.t-home {
+	@include from($mobile-large) {
+		&__info {
+			display: grid;
+			gap: 3rem;
+			font-size: 23px;
+			line-height: 1.5rem;
+			width: 400px;
+		}
+
+		&__image-container {
 			grid-template-columns: 1fr 1fr;
 		}
 
 		&__image {
-			width: 600px;
+			position: relative;
+			display: inline-block;
+			z-index: 0;
+			width: 300px;
+			height: auto;
 		}
 
 		&__circle {
-			width: 603px;
-			height: 603px;
+			position: absolute;
+			top: 55%;
+			left: 30%;
+			width: 303px;
+			height: 303px;
+			background-color: $background-default;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+			z-index: -1;
+		}
+
+		&__container-card-ia {
+			grid-template-columns: 300px;
+		}
+	}
+}
+
+.t-home {
+	@include from($laptop) {
+		@include from($laptop) {
+			height: 75vh;
+			&__container {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			&__image {
+				width: 600px;
+			}
+
+			&__circle {
+				top: 55%;
+				left: 30%;
+				width: 603px;
+				height: 603px;
+			}
+
+			&__container-card-ia {
+				grid-template-columns: 300px;
+			}
 		}
 	}
 }

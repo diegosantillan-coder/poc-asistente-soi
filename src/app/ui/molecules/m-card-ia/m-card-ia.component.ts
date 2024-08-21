@@ -11,6 +11,7 @@ import { Component, Input } from '@angular/core';
 export class MCardIaComponent {
 	@Input() title = '';
 	@Input() description = '';
+	@Input() descriptionMobile = '';
 	@Input() src = '';
 	@Input() cssStyle = '';
 	@Input() circleStyle = '';
