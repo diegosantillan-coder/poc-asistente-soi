@@ -28,7 +28,7 @@ module.exports = tseslint.config(
 				'error',
 				{
 					type: 'element',
-					prefix: ['app', 'a', 'm', 'o'],
+					prefix: ['app', 'a', 'm', 'o', 't'],
 					style: 'kebab-case'
 				}
 			]
@@ -41,6 +41,5 @@ module.exports = tseslint.config(
 			...angular.configs.templateAccessibility
 		],
 		rules: {}
-	},
-	eslintConfigPrettier
+	}
 );
