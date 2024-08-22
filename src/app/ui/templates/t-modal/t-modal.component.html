@@ -14,20 +14,21 @@
 		<img src="/images/close.svg" alt="" />
 	</button>
 	<div class="modal-content__chat">
-		<div>
-			Hola! Soy Amelia,<br />
-			tu asistente virtual IA
-		</div>
-		<p>¿Cómo puedo ayudarte?</p>
-		<a-custom-button
-			[text]="'Quiero liquidar mi planilla como independiente'"
-		></a-custom-button>
-		<a-custom-button
-			[text]="'Quiero reportar una novedad cómo independiente'"
-		></a-custom-button>
-		<a-custom-button
-			[text]="'Quiero pagar mis aportes vencidos cómo independiente'"
-		></a-custom-button>
+		@if (welcome) {
+			<div class="modal-content__welcome">
+				<div>
+					Hola! Soy Amelia,<br />
+					tu asistente virtual IA
+				</div>
+				<p>¿Cómo puedo ayudarte?</p>
+				@for (question of defaultQuestion; track $index) {
+					<a-custom-button
+						[text]="question.prompt"
+						(buttonClick)="sendDefaultQuestion(question)"
+					></a-custom-button>
+				}
+			</div>
+		}
 		<div class="modal-content__question">
 			<a-custom-input-text
 				(debouncedInput)="handleDebouncedInput($event)"

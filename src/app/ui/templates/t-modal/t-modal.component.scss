@@ -45,7 +45,7 @@
 		margin: 0 auto;
 		position: inherit;
 		top: 65px;
-		left: 132px;
+		left: 110px;
 		display: inline-block;
 		z-index: 0;
 		width: 100px;
@@ -75,7 +75,13 @@
 		display: grid;
 		justify-content: center;
 		gap: 1rem;
-		padding: 5rem 1rem 1rem 1rem;
+		padding: 5rem 1rem 1rem 2rem;
+	}
+
+	&__welcome {
+		display: grid;
+		justify-content: center;
+		gap: 1rem;
 	}
 
 	&__question {
@@ -108,6 +114,20 @@
 			&:hover {
 				background-color: $background-green-light;
 			}
+		}
+
+		&__chat {
+			padding: 5rem 1rem 1rem 1rem;
+		}
+
+		&__image {
+			top: 60px;
+			left: 128px;
+		}
+
+		&__circle {
+			width: 110px;
+			height: 110px;
 		}
 	}
 }

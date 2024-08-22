@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { debounceTime, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
 	selector: 'a-custom-input-text',
@@ -11,18 +11,6 @@ import { debounceTime, Subject } from 'rxjs';
 export class ACustomInputTextComponent {
 	@Output() debouncedInput = new EventEmitter<string>();
 	private inputSubject = new Subject<string>();
-
-	constructor() {
-		this.inputSubject
-			.pipe(
-				debounceTime(300) // Espera 300ms después del último tecleo
-			)
-			.subscribe((value) => {
-				if (value.trim()) {
-					this.debouncedInput.emit(value); // Emite el valor si no está vacío
-				}
-			});
-	}
 
 	onInputChange(event: Event): void {
 		const input = event.target as HTMLInputElement;
