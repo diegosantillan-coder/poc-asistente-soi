@@ -4,6 +4,7 @@
 	(keydown)="handleClose()"
 	tabindex="0"
 ></div>
+
 <div class="modal-content">
 	<img class="modal-content__borde" src="/images/borde.svg" alt="" />
 	<div class="modal-content__image">
@@ -28,16 +29,16 @@
 					></a-custom-button>
 				}
 			</div>
+		} @else {
+			<div class="modal__content-chat">
+				<a-card-welcome></a-card-welcome>
+			</div>
 		}
-		<div class="modal-content__question">
-			<a-custom-input-text
-				(debouncedInput)="handleDebouncedInput($event)"
-			></a-custom-input-text>
-			<img
-				class="modal-content__question-button"
-				src="/images/send.svg"
-				alt=""
-			/>
-		</div>
+	</div>
+	<div class="modal-content__question">
+		<a-custom-input-text
+			(debouncedInput)="handleDebouncedInput($event)"
+		></a-custom-input-text>
+		<img class="modal-content__question-button" src="/images/send.svg" alt="" />
 	</div>
 </div>
