@@ -1,0 +1,11 @@
+.a-custom-input-text {
+	display: flex;
+	padding: 16px 65px 16px 24px;
+	align-items: center;
+	max-width: 250px;
+	flex: 1 0 0;
+	border-radius: 30px;
+	border: 1px solid var(--colors-border-primary, #dcdee0);
+	background: var(--White-Light, #fff);
+	font-size: 16px;
+}

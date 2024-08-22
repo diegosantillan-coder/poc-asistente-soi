@@ -28,5 +28,15 @@
 		<a-custom-button
 			[text]="'Quiero pagar mis aportes vencidos cómo independiente'"
 		></a-custom-button>
+		<div class="modal-content__question">
+			<a-custom-input-text
+				(debouncedInput)="handleDebouncedInput($event)"
+			></a-custom-input-text>
+			<img
+				class="modal-content__question-button"
+				src="/images/send.svg"
+				alt=""
+			/>
+		</div>
 	</div>
 </div>

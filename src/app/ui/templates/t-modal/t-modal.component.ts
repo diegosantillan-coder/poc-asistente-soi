@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { ACustomInputTextComponent } from '@ui/atoms/a-custom-input-text/a-custom-input-text.component';
 import { AtomsModule } from '@ui/atoms/atoms.module';
 
 @Component({
@@ -10,8 +11,16 @@ import { AtomsModule } from '@ui/atoms/atoms.module';
 })
 export class TModalComponent {
 	@Output() onclose = new EventEmitter<void>();
+	@ViewChild(ACustomInputTextComponent, { static: true })
+	inputText!: ACustomInputTextComponent;
+	valueInput = '';
 
 	handleClose(): void {
 		this.onclose.emit();
+	}
+
+	handleDebouncedInput(value: string): void {
+		this.valueInput = value;
+		console.log(value);
 	}
 }
