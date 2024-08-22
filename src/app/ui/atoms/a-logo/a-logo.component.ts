@@ -10,5 +10,4 @@ import { Component, Input } from '@angular/core';
 })
 export class ALogoComponent {
 	@Input() src = '';
-	@Input() styleClass = 'a-logo-primary';
 }

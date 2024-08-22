@@ -1,0 +1,59 @@
+<div class="t-login">
+	<div class="t-login__header">
+		<a-logo [src]="'images/ach.svg'"> </a-logo>
+		<a-separator></a-separator>
+		<div>
+			<p>Personas</p>
+		</div>
+	</div>
+	<div class="t-login__container">
+		<div class="t-login__image-container">
+			<img
+				class="t-login__image-mobile"
+				src="images/welcome-soi-mobile.svg"
+				alt="Logo"
+			/>
+			<img
+				class="t-login__image-desktop"
+				src="images/welcome-soi-desktop.svg"
+				alt="Logo"
+			/>
+		</div>
+		<form class="login-form">
+			<h2>Inicia Sesión</h2>
+
+			<div class="form-group">
+				<label for="documentType">Tipo de documento</label>
+				<select id="documentType" formControlName="documentType">
+					<option value="cc">Cédula de ciudadanía</option>
+					<option value="ti">Tarjeta de identidad</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="documentNumber">Número de documento</label>
+				<input
+					id="documentNumber"
+					formControlName="documentNumber"
+					type="text"
+					placeholder="Ej: 39123456"
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="password">Clave</label>
+				<div class="password-wrapper">
+					<input
+						id="password"
+						formControlName="password"
+						type="password"
+						placeholder="Ingresa aquí tu clave"
+					/>
+					<span class="toggle-password"><i class="eye-icon"></i></span>
+				</div>
+			</div>
+
+			<button type="submit">Iniciar Sesión</button>
+		</form>
+	</div>
+</div>
