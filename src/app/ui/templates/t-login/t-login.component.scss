@@ -27,19 +27,36 @@
 	}
 
 	@include from($laptop) {
+		&__container {
+			grid-template-columns: 1fr 1fr;
+			justify-content: center;
+		}
+
 		&__image-mobile {
 			display: none;
 		}
 
 		&__image-desktop {
+			width: 100%;
+			height: auto;
 			display: block;
+			max-width: 100%;
 		}
 	}
 }
 
 .login-form {
 	display: grid;
-	padding: 1.5rem;
+	gap: 1.2rem;
+	padding: 2rem;
+	@include from($laptop) {
+		margin: auto 0;
+		padding: 5rem;
+	}
+
+	@include from($laptop-large) {
+		padding: 10rem;
+	}
 }
 
 .login-form h2 {
@@ -53,6 +70,19 @@
 
 .form-group {
 	margin-bottom: 1.25rem;
+
+	&__text {
+		text-align: center;
+		color: $text-default;
+		font-weight: 700;
+		font-size: 16px;
+	}
+
+	&__text-white {
+		text-align: center;
+		font-weight: 400;
+		font-size: 16px;
+	}
 }
 
 label {

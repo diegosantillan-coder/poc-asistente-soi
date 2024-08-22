@@ -7,26 +7,24 @@
 		</div>
 	</div>
 	<div class="t-login__container">
-		<div class="t-login__image-container">
-			<img
-				class="t-login__image-mobile"
-				src="images/welcome-soi-mobile.svg"
-				alt="Logo"
-			/>
-			<img
-				class="t-login__image-desktop"
-				src="images/welcome-soi-desktop.svg"
-				alt="Logo"
-			/>
-		</div>
-		<form class="login-form">
+		<img
+			class="t-login__image-mobile"
+			src="images/welcome-soi-mobile.svg"
+			alt="Logo"
+		/>
+		<img
+			class="t-login__image-desktop"
+			src="images/welcome-soi-desktop.svg"
+			alt="Logo"
+		/>
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
 			<h2>Inicia Sesión</h2>
 
 			<div class="form-group">
 				<label for="documentType">Tipo de documento</label>
 				<select id="documentType" formControlName="documentType">
 					<option value="cc">Cédula de ciudadanía</option>
-					<option value="ti">Tarjeta de identidad</option>
+					<option value="pass">Pasaporte</option>
 				</select>
 			</div>
 
@@ -49,11 +47,22 @@
 						type="password"
 						placeholder="Ingresa aquí tu clave"
 					/>
-					<span class="toggle-password"><i class="eye-icon"></i></span>
+					<span
+						class="toggle-password"
+						(click)="togglePasswordVisibility()"
+						(keydown)="togglePasswordVisibility()"
+						tabindex="0"
+						><i class="eye-icon"></i
+					></span>
 				</div>
 			</div>
+			<div class="form-group__text">¿Olvidaste tu clave?</div>
 
-			<button type="submit">Iniciar Sesión</button>
+			<button type="submit" [disabled]="loginForm.invalid">
+				Iniciar Sesión
+			</button>
+			<div class="form-group__text-white">¿No tienes una cuenta?</div>
+			<div class="form-group__text">Registrate aquí</div>
 		</form>
 	</div>
 </div>
