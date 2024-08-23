@@ -9,6 +9,7 @@ import {
 	ViewChild
 } from '@angular/core';
 import { QuestionRequest, Request } from '@core/interfaces/question.interface';
+import { User } from '@core/interfaces/user.interface';
 import { AgentService } from '@core/services/agent/agent.service';
 import { QuestionService } from '@core/services/question/question.service';
 import { UserService } from '@core/services/user/user.service';
@@ -28,19 +29,15 @@ export class TModalComponent implements AfterViewInit {
 	private readonly userService = inject(UserService);
 	private readonly questionService = inject(QuestionService);
 
-	constructor() {
-		this.DEFAULT_USER_ID = this.userService.getUser().documentNumber;
-		console.log(this.DEFAULT_USER_ID);
-	}
-
 	chats: { text: string; isUser: boolean }[] = [];
-	DEFAULT_USER_ID = '';
+
 	valueInput = '';
 	isInputEmpty = false;
 	isDisableInput = false;
 	isTyping = false; // Bandera para indicar si está "escribiendo"
 	welcome = true;
 	defaultQuestion: Request[] = this.questionService.getDefaultQuestions();
+	user: User = this.userService.getUser();
 
 	@ViewChild('chatContainer') chatContainer!: ElementRef;
 	@Output() onclose = new EventEmitter<void>();
@@ -61,8 +58,8 @@ export class TModalComponent implements AfterViewInit {
 		if (this.valueInput) {
 			this.askingTheAgent({
 				request: {
-					user_id: this.DEFAULT_USER_ID,
-					session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
+					user_id: this.user.documentNumber,
+					session_id: this.user.sessionId,
 					prompt: this.valueInput
 				}
 			});
@@ -101,8 +98,8 @@ export class TModalComponent implements AfterViewInit {
 
 			this.askingTheAgent({
 				request: {
-					user_id: this.DEFAULT_USER_ID,
-					session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
+					user_id: this.user.documentNumber,
+					session_id: this.user.sessionId,
 					prompt: currentInputValue
 				}
 			});
