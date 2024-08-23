@@ -8,9 +8,10 @@ import {
 	Output,
 	ViewChild
 } from '@angular/core';
-import { defaultQuestion } from '@core/data/default-question';
 import { QuestionRequest, Request } from '@core/interfaces/question.interface';
 import { AgentService } from '@core/services/agent/agent.service';
+import { QuestionService } from '@core/services/question/question.service';
+import { UserService } from '@core/services/user/user.service';
 import { ACustomInputTextComponent } from '@ui/atoms/a-custom-input-text/a-custom-input-text.component';
 import { AtomsModule } from '@ui/atoms/atoms.module';
 import { ACardChatComponent } from '../../atoms/a-card-chat/a-card-chat.component';
@@ -24,15 +25,22 @@ import { ACardChatComponent } from '../../atoms/a-card-chat/a-card-chat.componen
 })
 export class TModalComponent implements AfterViewInit {
 	private readonly agentService = inject(AgentService);
+	private readonly userService = inject(UserService);
+	private readonly questionService = inject(QuestionService);
+
+	constructor() {
+		this.DEFAULT_USER_ID = this.userService.getUser().documentNumber;
+		console.log(this.DEFAULT_USER_ID);
+	}
 
 	chats: { text: string; isUser: boolean }[] = [];
-	DEFAULT_USER_ID = 1519365949;
+	DEFAULT_USER_ID = '';
 	valueInput = '';
 	isInputEmpty = false;
 	isDisableInput = false;
 	isTyping = false; // Bandera para indicar si está "escribiendo"
 	welcome = true;
-	defaultQuestion: Request[] = defaultQuestion;
+	defaultQuestion: Request[] = this.questionService.getDefaultQuestions();
 
 	@ViewChild('chatContainer') chatContainer!: ElementRef;
 	@Output() onclose = new EventEmitter<void>();

@@ -39,6 +39,7 @@ export class TLoginComponent implements OnInit {
 	onSubmit(): void {
 		if (this.loginForm.valid) {
 			console.log(this.loginForm.value);
+			localStorage.setItem('user', JSON.stringify(this.loginForm.value));
 			this.router.navigate(['/home']);
 		}
 	}

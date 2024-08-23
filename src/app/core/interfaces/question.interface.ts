@@ -3,7 +3,7 @@ export interface QuestionRequest {
 }
 
 export interface Request {
-	user_id: number;
+	user_id: string;
 	session_id: string;
 	prompt: string;
 }
