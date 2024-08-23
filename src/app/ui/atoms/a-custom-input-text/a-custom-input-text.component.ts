@@ -52,6 +52,7 @@ export class ACustomInputTextComponent {
 	}
 
 	clearInputValue(): void {
+		this.textInput.nativeElement.value = '';
 		this.currentValue = '';
 		this.inputSubject.next('');
 		this.inputChanged.emit(false);

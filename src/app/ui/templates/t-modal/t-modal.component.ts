@@ -87,10 +87,9 @@ export class TModalComponent implements AfterViewInit {
 	}
 
 	sendQuestion(): void {
+		this.valueInput = this.inputText.currentValue;
 		if (this.valueInput.length <= 0) return;
-		const currentInputValue = this.inputText.currentValue;
-		if (currentInputValue.trim()) {
-			this.valueInput = currentInputValue;
+		if (this.valueInput.trim()) {
 			this.chats.push({
 				text: this.valueInput,
 				isUser: true
@@ -100,7 +99,7 @@ export class TModalComponent implements AfterViewInit {
 				request: {
 					user_id: this.user.documentNumber,
 					session_id: this.user.sessionId,
-					prompt: currentInputValue
+					prompt: this.valueInput
 				}
 			});
 
