@@ -33,6 +33,10 @@ npm install
 - Put newline before extended commit body
 - More details at **[conventionalcommits.org](https://www.conventionalcommits.org/)**
 
+# Autenticación / Inicio de Sesión
+
+- Se simula la autenticación con cualquier cédula, sin embargo, si necesita probar todos los necesarios, solicite las claves al administrador
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
