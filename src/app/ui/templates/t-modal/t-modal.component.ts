@@ -30,13 +30,14 @@ export class TModalComponent implements AfterViewInit {
 	valueInput = '';
 	isInputEmpty = false;
 	isDisableInput = false;
+	isTyping = false; // Bandera para indicar si está "escribiendo"
 	welcome = true;
 	defaultQuestion: Request[] = defaultQuestion;
 
 	@ViewChild('chatContainer') chatContainer!: ElementRef;
 	@Output() onclose = new EventEmitter<void>();
 
-	@ViewChild(ACustomInputTextComponent, { static: true })
+	@ViewChild(ACustomInputTextComponent, { static: false })
 	inputText!: ACustomInputTextComponent;
 
 	handleClose(): void {
@@ -123,6 +124,7 @@ export class TModalComponent implements AfterViewInit {
 	askingTheAgent(request: QuestionRequest): void {
 		this.isInputEmpty = false;
 		this.isDisableInput = true;
+		this.isTyping = true;
 		this.agentService.getResponseAgent(request).subscribe((response) => {
 			if (response.agent_answer) {
 				this.chats.push({
@@ -131,7 +133,19 @@ export class TModalComponent implements AfterViewInit {
 				});
 			}
 			this.isDisableInput = false;
+			this.isTyping = false;
+			this.tryFocusInput();
 			setTimeout(() => this.scrollToBottom(), 0);
 		});
+	}
+
+	tryFocusInput(): void {
+		if (!this.inputText.disableInput) {
+			this.inputText.focusInput();
+		} else {
+			setTimeout(() => {
+				this.tryFocusInput();
+			}, 1000);
+		}
 	}
 }

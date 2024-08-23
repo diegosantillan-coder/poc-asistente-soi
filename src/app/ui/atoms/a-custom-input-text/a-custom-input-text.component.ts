@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+	Component,
+	ElementRef,
+	EventEmitter,
+	Input,
+	Output,
+	ViewChild
+} from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -12,6 +19,8 @@ export class ACustomInputTextComponent {
 	@Input() disableInput = false;
 	@Output() debouncedInput = new EventEmitter<string>();
 	@Output() inputChanged = new EventEmitter<boolean>();
+
+	@ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
 	private inputSubject = new Subject<string>();
 	public currentValue = '';
 
@@ -31,6 +40,7 @@ export class ACustomInputTextComponent {
 		if (event.key === 'Enter' && input.value.trim()) {
 			this.debouncedInput.emit(input.value);
 			this.clearInput(input);
+			this.focusInput();
 		}
 	}
 
@@ -45,5 +55,14 @@ export class ACustomInputTextComponent {
 		this.currentValue = '';
 		this.inputSubject.next('');
 		this.inputChanged.emit(false);
+	}
+
+	focusInput(): void {
+		console.log('focusInput');
+		if (this.textInput) {
+			console.log(this.textInput);
+
+			this.textInput.nativeElement.focus();
+		}
 	}
 }

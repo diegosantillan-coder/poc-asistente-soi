@@ -34,6 +34,11 @@
 			<div class="modal-content__chat-ia">
 				<a-card-welcome></a-card-welcome>
 				<a-card-chat [chats]="chats"></a-card-chat>
+				@if (isTyping) {
+					<div class="typing-indicator">
+						<span>Escribiendo...</span>
+					</div>
+				}
 			</div>
 		}
 	</div>
@@ -42,6 +47,7 @@
 		[ngClass]="{ 'modal-content__question-button--disabled': isDisableInput }"
 	>
 		<a-custom-input-text
+			#inputText
 			(debouncedInput)="handleDebouncedInput($event)"
 			(inputChanged)="handleInputChanged($event)"
 			[disableInput]="isDisableInput"
