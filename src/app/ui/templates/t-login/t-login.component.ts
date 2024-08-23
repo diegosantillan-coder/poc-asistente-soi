@@ -46,6 +46,7 @@ export class TLoginComponent implements OnInit {
 			const user: User = this.loginForm.value;
 			user.sessionId = this.sessionId;
 			localStorage.setItem('user', JSON.stringify(user));
+			console.log('User logged in', user);
 			this.router.navigate(['/home']);
 		}
 	}
