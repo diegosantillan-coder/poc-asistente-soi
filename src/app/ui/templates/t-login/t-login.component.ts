@@ -6,6 +6,8 @@ import {
 	Validators
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '@core/interfaces/user.interface';
+import { SessionService } from '@core/services/session/session.service';
 import { AtomsModule } from '@ui/atoms/atoms.module';
 import { ASeparatorComponent } from '../../atoms/a-separator/a-separator.component';
 
@@ -18,9 +20,11 @@ import { ASeparatorComponent } from '../../atoms/a-separator/a-separator.compone
 })
 export class TLoginComponent implements OnInit {
 	loginForm!: FormGroup;
+	sessionId = '';
 	constructor(
 		private fb: FormBuilder,
-		private router: Router
+		private router: Router,
+		private sessionService: SessionService
 	) {}
 
 	ngOnInit(): void {
@@ -34,12 +38,14 @@ export class TLoginComponent implements OnInit {
 		});
 
 		this.loginForm.controls['documentType'].setValue('cc');
+		this.sessionId = this.sessionService.generateSessionId();
 	}
 
 	onSubmit(): void {
 		if (this.loginForm.valid) {
-			console.log(this.loginForm.value);
-			localStorage.setItem('user', JSON.stringify(this.loginForm.value));
+			const user: User = this.loginForm.value;
+			user.sessionId = this.sessionId;
+			localStorage.setItem('user', JSON.stringify(user));
 			this.router.navigate(['/home']);
 		}
 	}
