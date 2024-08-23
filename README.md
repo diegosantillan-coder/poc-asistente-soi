@@ -37,6 +37,17 @@ npm install
 
 - Se simula la autenticación con cualquier cédula, sin embargo, si necesita probar todos los necesarios, solicite las claves al administrador
 
+# Acceso desde Smartphones
+
+- Si se sube el repo a un bucket, se necesita deshabilitar el modo seguro para que funcione en smartphones si no tienes acceso.
+
+- Deshabilitar "Modo seguro":
+
+1. Paso 1: Abre Chrome en tu dispositivo.
+2. Paso 2: Toca los tres puntos en la esquina superior derecha para abrir el menú.
+3. Paso 3: Ve a "Configuración" y luego a "Privacidad y seguridad".
+4. Paso 4: Busca una opción llamada "Navegación Segura" o algo similar. Si está activada, intenta desactivarla temporalmente.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
