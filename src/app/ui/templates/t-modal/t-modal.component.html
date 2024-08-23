@@ -30,8 +30,9 @@
 				}
 			</div>
 		} @else {
-			<div class="modal__content-chat">
+			<div class="modal-content__chat-ia">
 				<a-card-welcome></a-card-welcome>
+				<a-card-chat [chats]="chats"></a-card-chat>
 			</div>
 		}
 	</div>
@@ -39,6 +40,13 @@
 		<a-custom-input-text
 			(debouncedInput)="handleDebouncedInput($event)"
 		></a-custom-input-text>
-		<img class="modal-content__question-button" src="/images/send.svg" alt="" />
+		<img
+			class="modal-content__question-button"
+			src="/images/send.svg"
+			alt=""
+			(click)="sendQuestion()"
+			tabindex="0"
+			(keydown)="sendQuestion()"
+		/>
 	</div>
 </div>

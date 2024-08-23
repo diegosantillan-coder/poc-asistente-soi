@@ -11,22 +11,25 @@ import { Subject } from 'rxjs';
 export class ACustomInputTextComponent {
 	@Output() debouncedInput = new EventEmitter<string>();
 	private inputSubject = new Subject<string>();
+	public currentValue = '';
 
 	onInputChange(event: Event): void {
 		const input = event.target as HTMLInputElement;
 		this.inputSubject.next(input.value);
+		this.currentValue = input.value;
 	}
 
 	onKeyDown(event: KeyboardEvent): void {
 		const input = event.target as HTMLInputElement;
 		if (event.key === 'Enter' && input.value.trim()) {
-			this.debouncedInput.emit(input.value); // Emite el valor del input
-			this.clearInput(input); // Luego limpia el input
+			this.debouncedInput.emit(input.value);
+			this.clearInput(input);
 		}
 	}
 
 	clearInput(input: HTMLInputElement): void {
-		input.value = ''; // Limpia el valor del input
-		this.inputSubject.next(''); // Resetea el Subject
+		input.value = '';
+		this.currentValue = '';
+		this.inputSubject.next('');
 	}
 }
