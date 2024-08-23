@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 	styleUrl: './a-custom-input-text.component.scss'
 })
 export class ACustomInputTextComponent {
+	@Input() disableInput = false;
 	@Output() debouncedInput = new EventEmitter<string>();
 	@Output() inputChanged = new EventEmitter<boolean>();
 	private inputSubject = new Subject<string>();

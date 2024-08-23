@@ -1,11 +1,14 @@
 import { NgClass } from '@angular/common';
 import {
+	AfterViewInit,
 	Component,
+	ElementRef,
 	EventEmitter,
 	inject,
 	Output,
 	ViewChild
 } from '@angular/core';
+import { defaultQuestion } from '@core/data/default-question';
 import { QuestionRequest, Request } from '@core/interfaces/question.interface';
 import { AgentService } from '@core/services/agent/agent.service';
 import { ACustomInputTextComponent } from '@ui/atoms/a-custom-input-text/a-custom-input-text.component';
@@ -19,41 +22,22 @@ import { ACardChatComponent } from '../../atoms/a-card-chat/a-card-chat.componen
 	templateUrl: './t-modal.component.html',
 	styleUrl: './t-modal.component.scss'
 })
-export class TModalComponent {
+export class TModalComponent implements AfterViewInit {
 	private readonly agentService = inject(AgentService);
 
 	chats: { text: string; isUser: boolean }[] = [];
-	@Output() onclose = new EventEmitter<void>();
-	@ViewChild(ACustomInputTextComponent, { static: true })
-	inputText!: ACustomInputTextComponent;
+	DEFAULT_USER_ID = 1519365949;
 	valueInput = '';
 	isInputEmpty = false;
+	isDisableInput = false;
 	welcome = true;
-	defaultQuestion: Request[] = [
-		{
-			user_id: 1519365949,
-			session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
-			prompt: 'Quiero liquidar mi planilla como independiente'
-		},
-		{
-			user_id: 1519365949,
-			session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
-			prompt: 'Quiero reportar una novedad cómo independiente'
-		},
-		{
-			user_id: 1519365949,
-			session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
-			prompt: 'Quiero pagar mis aportes vencidos cómo independiente'
-		}
-	];
+	defaultQuestion: Request[] = defaultQuestion;
 
-	questionRequest: QuestionRequest = {
-		request: {
-			user_id: 0,
-			session_id: '',
-			prompt: ''
-		}
-	};
+	@ViewChild('chatContainer') chatContainer!: ElementRef;
+	@Output() onclose = new EventEmitter<void>();
+
+	@ViewChild(ACustomInputTextComponent, { static: true })
+	inputText!: ACustomInputTextComponent;
 
 	handleClose(): void {
 		this.onclose.emit();
@@ -66,12 +50,22 @@ export class TModalComponent {
 	handleDebouncedInput(value: string): void {
 		this.valueInput = value;
 		if (this.valueInput) {
+			this.askingTheAgent({
+				request: {
+					user_id: this.DEFAULT_USER_ID,
+					session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
+					prompt: this.valueInput
+				}
+			});
+
 			this.welcome = false;
 			this.chats.push({
 				text: this.valueInput,
 				isUser: true
 			});
 		}
+
+		setTimeout(() => this.scrollToBottom(), 0);
 	}
 
 	sendDefaultQuestion(question: Request): void {
@@ -82,16 +76,7 @@ export class TModalComponent {
 				text: this.valueInput,
 				isUser: true
 			});
-
-			this.questionRequest.request = question;
-			this.agentService
-				.getResponseAgent(this.questionRequest)
-				.subscribe((response) => {
-					this.chats.push({
-						text: response.agent_answer,
-						isUser: false
-					});
-				});
+			this.askingTheAgent({ request: question });
 		}
 	}
 
@@ -104,10 +89,49 @@ export class TModalComponent {
 				text: this.valueInput,
 				isUser: true
 			});
+
+			this.askingTheAgent({
+				request: {
+					user_id: this.DEFAULT_USER_ID,
+					session_id: 'd4e8f4a8-4a3b-41e2-93d7-2c1e354b64de',
+					prompt: currentInputValue
+				}
+			});
+
 			this.inputText.clearInputValue();
 			this.welcome = false;
-		} else {
-			console.log('Input is empty');
+			setTimeout(() => this.scrollToBottom(), 0);
 		}
+	}
+
+	ngAfterViewInit(): void {
+		this.scrollToBottom();
+	}
+
+	private scrollToBottom(): void {
+		if (this.chatContainer) {
+			const container = this.chatContainer.nativeElement;
+			if (container) {
+				container.scrollTop = container.scrollHeight;
+				setTimeout(() => {
+					container.scrollTop = container.scrollHeight;
+				}, 100);
+			}
+		}
+	}
+
+	askingTheAgent(request: QuestionRequest): void {
+		this.isInputEmpty = false;
+		this.isDisableInput = true;
+		this.agentService.getResponseAgent(request).subscribe((response) => {
+			if (response.agent_answer) {
+				this.chats.push({
+					text: response.agent_answer,
+					isUser: false
+				});
+			}
+			this.isDisableInput = false;
+			setTimeout(() => this.scrollToBottom(), 0);
+		});
 	}
 }

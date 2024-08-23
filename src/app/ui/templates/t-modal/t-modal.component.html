@@ -15,7 +15,7 @@
 	<button class="modal-content__close" type="button" (click)="handleClose()">
 		<img src="/images/close.svg" alt="" />
 	</button>
-	<div class="modal-content__chat">
+	<div class="modal-content__chat" #chatContainer>
 		@if (welcome) {
 			<div class="modal-content__welcome">
 				<div>
@@ -37,10 +37,14 @@
 			</div>
 		}
 	</div>
-	<div class="modal-content__question">
+	<div
+		class="modal-content__question"
+		[ngClass]="{ 'modal-content__question-button--disabled': isDisableInput }"
+	>
 		<a-custom-input-text
 			(debouncedInput)="handleDebouncedInput($event)"
 			(inputChanged)="handleInputChanged($event)"
+			[disableInput]="isDisableInput"
 		></a-custom-input-text>
 		<img
 			class="modal-content__question-button"
