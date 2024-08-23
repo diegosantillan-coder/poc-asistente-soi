@@ -18,6 +18,7 @@ export class TModalComponent {
 	@ViewChild(ACustomInputTextComponent, { static: true })
 	inputText!: ACustomInputTextComponent;
 	valueInput = '';
+	isInputEmpty = false;
 	welcome = true;
 	defaultQuestion: Question[] = [
 		{
@@ -41,16 +42,18 @@ export class TModalComponent {
 		this.onclose.emit();
 	}
 
+	handleInputChanged(value: boolean): void {
+		this.isInputEmpty = value;
+	}
+
 	handleDebouncedInput(value: string): void {
 		this.valueInput = value;
 		if (this.valueInput) {
 			this.welcome = false;
-			console.log('Input value:', this.valueInput);
 			this.chats.push({
 				text: this.valueInput,
 				isUser: true
 			});
-			console.log(this.chats);
 		}
 	}
 
@@ -62,20 +65,19 @@ export class TModalComponent {
 				text: this.valueInput,
 				isUser: true
 			});
-			console.log(this.chats);
 		}
 	}
 
 	sendQuestion(): void {
+		if (this.valueInput.length <= 0) return;
 		const currentInputValue = this.inputText.currentValue;
 		if (currentInputValue.trim()) {
-			console.log('Sending question:', currentInputValue);
 			this.valueInput = currentInputValue;
 			this.chats.push({
 				text: this.valueInput,
 				isUser: true
 			});
-			console.log(this.chats);
+			this.inputText.clearInputValue();
 			this.welcome = false;
 		} else {
 			console.log('Input is empty');

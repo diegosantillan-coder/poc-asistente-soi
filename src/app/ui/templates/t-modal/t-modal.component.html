@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
 <div
 	class="modal-overlay"
 	(click)="handleClose()"
@@ -39,14 +40,17 @@
 	<div class="modal-content__question">
 		<a-custom-input-text
 			(debouncedInput)="handleDebouncedInput($event)"
+			(inputChanged)="handleInputChanged($event)"
 		></a-custom-input-text>
 		<img
 			class="modal-content__question-button"
 			src="/images/send.svg"
 			alt=""
 			(click)="sendQuestion()"
-			tabindex="0"
-			(keydown)="sendQuestion()"
+			(keydown.enter)="sendQuestion()"
+			[ngClass]="{
+				'modal-content__question-button--disabled': !isInputEmpty
+			}"
 		/>
 	</div>
 </div>

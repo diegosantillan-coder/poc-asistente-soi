@@ -110,6 +110,12 @@
 			min-width: 50px;
 			height: auto;
 			cursor: pointer;
+
+			&--disabled {
+				opacity: 0.5; /* Reduce la opacidad para que parezca deshabilitado */
+				cursor: not-allowed; /* Cambia el cursor para indicar que no se puede hacer clic */
+				pointer-events: none; /* Desactiva la capacidad de hacer clic */
+			}
 		}
 	}
 }
